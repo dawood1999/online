@@ -1,0 +1,91 @@
+﻿@model DigitalPhotoPrintingEproject.Models.OrderTable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.o_Size_)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.o_Size_)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.o_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.o_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.o_Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.o_Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.o_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.o_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.o_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.o_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.o_TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.o_TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrameTable.f_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrameTable.f_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GelleryTable.mg_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GelleryTable.mg_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTable.U_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTable.U_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.o_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

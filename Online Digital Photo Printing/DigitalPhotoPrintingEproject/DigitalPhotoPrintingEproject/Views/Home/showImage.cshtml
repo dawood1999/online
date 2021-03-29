@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DigitalPhotoPrintingEproject.Models.GelleryTable>
+
+@{
+    ViewBag.Title = "showImage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>showImage</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mg_Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserTable.U_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           <img src="@Url.Content(item.mg_Image)" alt="Alternate Text" width="100" height="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserTable.U_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Order", "Create", "OrderTables" , new { id = item.mg_Id },null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mg_Id })
+        </td>
+    </tr>
+}
+
+</table>

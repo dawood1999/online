@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DigitalPrintingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FrameTable">
+          <Key>
+            <PropertyRef Name="f_Id" />
+          </Key>
+          <Property Name="f_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f_Image" Type="varchar" MaxLength="500" />
+          <Property Name="f_Size" Type="varchar" MaxLength="50" />
+          <Property Name="f_Price" Type="money" />
+          <Property Name="f_Type" Type="varchar" MaxLength="50" />
+          <Property Name="f_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GelleryTable">
+          <Key>
+            <PropertyRef Name="mg_Id" />
+          </Key>
+          <Property Name="mg_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mg_Image" Type="varchar" MaxLength="500" />
+          <Property Name="U_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="o_Id" />
+          </Key>
+          <Property Name="o_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="U_Id" Type="int" />
+          <Property Name="mg_Id" Type="int" />
+          <Property Name="f_Id" Type="int" />
+          <Property Name="o_Size " Type="varchar" MaxLength="50" />
+          <Property Name="o_Date" Type="date" />
+          <Property Name="o_Quantity" Type="int" />
+          <Property Name="o_Address" Type="varchar" MaxLength="50" />
+          <Property Name="o_Price" Type="money" />
+          <Property Name="o_TotalPrice" Type="money" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="U_Name" Type="varchar" MaxLength="50" />
+          <Property Name="U_FristName" Type="varchar" MaxLength="50" />
+          <Property Name="U_LastName" Type="varchar" MaxLength="50" />
+          <Property Name="U_Email" Type="varchar" MaxLength="50" />
+          <Property Name="U_Password" Type="varchar" MaxLength="50" />
+          <Property Name="U_PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="U_Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__GelleryTab__U_Id__1273C1CD">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="GelleryTable" Type="Self.GelleryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="GelleryTable">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTabl__mg_Id__182C9B23">
+          <End Role="GelleryTable" Type="Self.GelleryTable" Multiplicity="0..1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GelleryTable">
+              <PropertyRef Name="mg_Id" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="mg_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTable__f_Id__1920BF5C">
+          <End Role="FrameTable" Type="Self.FrameTable" Multiplicity="0..1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FrameTable">
+              <PropertyRef Name="f_Id" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="f_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTable__U_Id__173876EA">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DigitalPrintingDBModelStoreContainer">
+          <EntitySet Name="FrameTable" EntityType="Self.FrameTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GelleryTable" EntityType="Self.GelleryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderTable" EntityType="Self.OrderTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__GelleryTab__U_Id__1273C1CD" Association="Self.FK__GelleryTab__U_Id__1273C1CD">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="GelleryTable" EntitySet="GelleryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTabl__mg_Id__182C9B23" Association="Self.FK__OrderTabl__mg_Id__182C9B23">
+            <End Role="GelleryTable" EntitySet="GelleryTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTable__f_Id__1920BF5C" Association="Self.FK__OrderTable__f_Id__1920BF5C">
+            <End Role="FrameTable" EntitySet="FrameTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTable__U_Id__173876EA" Association="Self.FK__OrderTable__U_Id__173876EA">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DigitalPrintingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FrameTable">
+          <Key>
+            <PropertyRef Name="f_Id" />
+          </Key>
+          <Property Name="f_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f_Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="f_Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="f_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="f_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="f_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK__OrderTable__f_Id__1920BF5C" FromRole="FrameTable" ToRole="OrderTable" />
+        </EntityType>
+        <EntityType Name="GelleryTable">
+          <Key>
+            <PropertyRef Name="mg_Id" />
+          </Key>
+          <Property Name="mg_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mg_Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="U_Id" Type="Int32" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK__GelleryTab__U_Id__1273C1CD" FromRole="GelleryTable" ToRole="UserTable" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK__OrderTabl__mg_Id__182C9B23" FromRole="GelleryTable" ToRole="OrderTable" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="o_Id" />
+          </Key>
+          <Property Name="o_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="U_Id" Type="Int32" />
+          <Property Name="mg_Id" Type="Int32" />
+          <Property Name="f_Id" Type="Int32" />
+          <Property Name="o_Size_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="o_Date" Type="DateTime" Precision="0" />
+          <Property Name="o_Quantity" Type="Int32" />
+          <Property Name="o_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="o_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="o_TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="FrameTable" Relationship="Self.FK__OrderTable__f_Id__1920BF5C" FromRole="OrderTable" ToRole="FrameTable" />
+          <NavigationProperty Name="GelleryTable" Relationship="Self.FK__OrderTabl__mg_Id__182C9B23" FromRole="OrderTable" ToRole="GelleryTable" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK__OrderTable__U_Id__173876EA" FromRole="OrderTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="U_Id" />
+          </Key>
+          <Property Name="U_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="U_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_FristName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="U_Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GelleryTable" Relationship="Self.FK__GelleryTab__U_Id__1273C1CD" FromRole="UserTable" ToRole="GelleryTable" />
+          <NavigationProperty Name="OrderTable" Relationship="Self.FK__OrderTable__U_Id__173876EA" FromRole="UserTable" ToRole="OrderTable" />
+        </EntityType>
+        <Association Name="FK__OrderTable__f_Id__1920BF5C">
+          <End Role="FrameTable" Type="Self.FrameTable" Multiplicity="0..1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FrameTable">
+              <PropertyRef Name="f_Id" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="f_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GelleryTab__U_Id__1273C1CD">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="GelleryTable" Type="Self.GelleryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="GelleryTable">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTabl__mg_Id__182C9B23">
+          <End Role="GelleryTable" Type="Self.GelleryTable" Multiplicity="0..1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GelleryTable">
+              <PropertyRef Name="mg_Id" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="mg_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderTable__U_Id__173876EA">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="U_Id" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DigitalPrintingDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FrameTable" EntityType="Self.FrameTable" />
+          <EntitySet Name="GelleryTable" EntityType="Self.GelleryTable" />
+          <EntitySet Name="OrderTable" EntityType="Self.OrderTable" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK__OrderTable__f_Id__1920BF5C" Association="Self.FK__OrderTable__f_Id__1920BF5C">
+            <End Role="FrameTable" EntitySet="FrameTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GelleryTab__U_Id__1273C1CD" Association="Self.FK__GelleryTab__U_Id__1273C1CD">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="GelleryTable" EntitySet="GelleryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTabl__mg_Id__182C9B23" Association="Self.FK__OrderTabl__mg_Id__182C9B23">
+            <End Role="GelleryTable" EntitySet="GelleryTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderTable__U_Id__173876EA" Association="Self.FK__OrderTable__U_Id__173876EA">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DigitalPrintingDBModelStoreContainer" CdmEntityContainer="DigitalPrintingDBEntities1">
+          <EntitySetMapping Name="FrameTable">
+            <EntityTypeMapping TypeName="DigitalPrintingDBModel.FrameTable">
+              <MappingFragment StoreEntitySet="FrameTable">
+                <ScalarProperty Name="f_Id" ColumnName="f_Id" />
+                <ScalarProperty Name="f_Image" ColumnName="f_Image" />
+                <ScalarProperty Name="f_Size" ColumnName="f_Size" />
+                <ScalarProperty Name="f_Price" ColumnName="f_Price" />
+                <ScalarProperty Name="f_Type" ColumnName="f_Type" />
+                <ScalarProperty Name="f_Name" ColumnName="f_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GelleryTable">
+            <EntityTypeMapping TypeName="DigitalPrintingDBModel.GelleryTable">
+              <MappingFragment StoreEntitySet="GelleryTable">
+                <ScalarProperty Name="mg_Id" ColumnName="mg_Id" />
+                <ScalarProperty Name="mg_Image" ColumnName="mg_Image" />
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTable">
+            <EntityTypeMapping TypeName="DigitalPrintingDBModel.OrderTable">
+              <MappingFragment StoreEntitySet="OrderTable">
+                <ScalarProperty Name="o_Id" ColumnName="o_Id" />
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="mg_Id" ColumnName="mg_Id" />
+                <ScalarProperty Name="f_Id" ColumnName="f_Id" />
+                <ScalarProperty Name="o_Size_" ColumnName="o_Size " />
+                <ScalarProperty Name="o_Date" ColumnName="o_Date" />
+                <ScalarProperty Name="o_Quantity" ColumnName="o_Quantity" />
+                <ScalarProperty Name="o_Address" ColumnName="o_Address" />
+                <ScalarProperty Name="o_Price" ColumnName="o_Price" />
+                <ScalarProperty Name="o_TotalPrice" ColumnName="o_TotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="DigitalPrintingDBModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="U_Name" ColumnName="U_Name" />
+                <ScalarProperty Name="U_FristName" ColumnName="U_FristName" />
+                <ScalarProperty Name="U_LastName" ColumnName="U_LastName" />
+                <ScalarProperty Name="U_Email" ColumnName="U_Email" />
+                <ScalarProperty Name="U_Password" ColumnName="U_Password" />
+                <ScalarProperty Name="U_PhoneNumber" ColumnName="U_PhoneNumber" />
+                <ScalarProperty Name="U_Role" ColumnName="U_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DigitalPrintingDBModelStoreContainer" CdmEntityContainer="DigitalPrintingDBEntities1">
+    <EntitySetMapping Name="FrameTable">
+      <EntityTypeMapping TypeName="DigitalPrintingDBModel.FrameTable">
+        <MappingFragment StoreEntitySet="FrameTable">
+          <ScalarProperty Name="f_Id" ColumnName="f_Id" />
+          <ScalarProperty Name="f_Image" ColumnName="f_Image" />
+          <ScalarProperty Name="f_Size" ColumnName="f_Size" />
+          <ScalarProperty Name="f_Price" ColumnName="f_Price" />
+          <ScalarProperty Name="f_Type" ColumnName="f_Type" />
+          <ScalarProperty Name="f_Name" ColumnName="f_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GelleryTable">
+      <EntityTypeMapping TypeName="DigitalPrintingDBModel.GelleryTable">
+        <MappingFragment StoreEntitySet="GelleryTable">
+          <ScalarProperty Name="mg_Id" ColumnName="mg_Id" />
+          <ScalarProperty Name="mg_Image" ColumnName="mg_Image" />
+          <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderTable">
+      <EntityTypeMapping TypeName="DigitalPrintingDBModel.OrderTable">
+        <MappingFragment StoreEntitySet="OrderTable">
+          <ScalarProperty Name="o_Id" ColumnName="o_Id" />
+          <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+          <ScalarProperty Name="mg_Id" ColumnName="mg_Id" />
+          <ScalarProperty Name="f_Id" ColumnName="f_Id" />
+          <ScalarProperty Name="o_Size_" ColumnName="o_Size " />
+          <ScalarProperty Name="o_Date" ColumnName="o_Date" />
+          <ScalarProperty Name="o_Quantity" ColumnName="o_Quantity" />
+          <ScalarProperty Name="o_Address" ColumnName="o_Address" />
+          <ScalarProperty Name="o_Price" ColumnName="o_Price" />
+          <ScalarProperty Name="o_TotalPrice" ColumnName="o_TotalPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTable">
+      <EntityTypeMapping TypeName="DigitalPrintingDBModel.UserTable">
+        <MappingFragment StoreEntitySet="UserTable">
+          <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+          <ScalarProperty Name="U_Name" ColumnName="U_Name" />
+          <ScalarProperty Name="U_FristName" ColumnName="U_FristName" />
+          <ScalarProperty Name="U_LastName" ColumnName="U_LastName" />
+          <ScalarProperty Name="U_Email" ColumnName="U_Email" />
+          <ScalarProperty Name="U_Password" ColumnName="U_Password" />
+          <ScalarProperty Name="U_PhoneNumber" ColumnName="U_PhoneNumber" />
+          <ScalarProperty Name="U_Role" ColumnName="U_Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

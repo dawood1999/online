@@ -1,0 +1,80 @@
+﻿@model IEnumerable<DigitalPhotoPrintingEproject.Models.OrderTable>
+
+@{
+    ViewBag.Title = "OderAdminView";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>OderAdminView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+                      <table class="table" style="width: 77%;margin-left: 290px;" id="myTable">
+                          <thead>
+                              <tr>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.UserTable.U_Name)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.o_Size_)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.o_Date)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.o_Quantity)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.o_Address)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.o_TotalPrice)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.FrameTable.f_Image)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.GelleryTable.mg_Image)
+                                  </th>
+
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (var item in Model)
+                              {
+                                  <tr>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.UserTable.U_Name)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.o_Size_)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.o_Date)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.o_Quantity)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.o_Address)
+                                      </td>
+
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.o_TotalPrice)
+                                      </td>
+                                      <td>
+                                          <img src="@Url.Content(item.FrameTable.f_Image)" alt="Alternate Text" width="100">
+                                      </td>
+                                      <td>
+                                          <img src="@Url.Content(item.GelleryTable.mg_Image)" alt="Alternate Text" width="100">
+                                      </td>
+
+                                      <td>
+                                          @Html.ActionLink("Delete", "Delete", new { id = item.o_Id })
+                                      </td>
+                                  </tr>
+                              }
+                          </tbody>
+                      </table>
